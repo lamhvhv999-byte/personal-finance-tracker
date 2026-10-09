@@ -1,0 +1,33 @@
+# Personal Finance Tracker
+
+Một ứng dụng web đơn giản để theo dõi thu chi cá nhân, xem báo cáo theo tháng và quản lý danh sách giao dịch.
+
+## Tính năng
+
+- Thêm, sửa, xóa giao dịch
+- Phân loại theo thu nhập / chi tiêu
+- Theo dõi tổng thu nhập, chi tiêu, số dư và khoản tiết kiệm
+- Chỉ số ngân sách tháng
+- Lọc theo tháng và loại giao dịch
+- Dữ liệu lưu trong localStorage để không mất khi reload
+
+## Cách chạy
+
+1. Mở file `index.html` trực tiếp trong trình duyệt, hoặc
+2. Chạy local server:
+
+```bash
+python -m http.server 8000
+```
+
+Rồi truy cập: http://localhost:8000
+
+## Cấu trúc
+
+- `index.html`: giao diện chính
+- `styles.css`: thiết kế và layout
+- `app.js`: logic quản lý dữ liệu và giao diện
+
+## Mục tiêu
+
+Dự án này là phiên bản MVP giúp bạn bắt đầu quản lý tài chính cá nhân một cách trực quan và dễ mở rộng trong tương lai.

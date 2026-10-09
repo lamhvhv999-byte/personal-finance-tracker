@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finance Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-icon">₫</div>
+          <div>
+            <p class="eyebrow">Finance</p>
+            <h1>Tracker</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active">Tổng quan</button>
+          <button class="nav-item">Giao dịch</button>
+          <button class="nav-item">Báo cáo</button>
+          <button class="nav-item">Ngân sách</button>
+        </nav>
+
+        <div class="budget-box">
+          <p>Ngân sách tháng</p>
+          <strong id="budgetValue">0₫</strong>
+          <div class="budget-progress">
+            <span id="budgetProgressBar"></span>
+          </div>
+          <small id="budgetStatus">0% đã sử dụng</small>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h2>Quản lý thu chi cá nhân</h2>
+          </div>
+          <button id="resetDataBtn" class="ghost-btn">Khôi phục dữ liệu mẫu</button>
+        </header>
+
+        <section class="filters area-card">
+          <div class="field-group compact">
+            <label for="monthFilter">Tháng</label>
+            <select id="monthFilter"></select>
+          </div>
+          <div class="field-group compact">
+            <label for="typeFilter">Loại</label>
+            <select id="typeFilter">
+              <option value="all">Tất cả</option>
+              <option value="income">Thu nhập</option>
+              <option value="expense">Chi tiêu</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <article class="stat-card income">
+            <div class="stat-header">
+              <span>Thu nhập</span>
+              <span class="badge badge-income">+</span>
+            </div>
+            <h3 id="incomeStat">0₫</h3>
+          </article>
+
+          <article class="stat-card expense">
+            <div class="stat-header">
+              <span>Chi tiêu</span>
+              <span class="badge badge-expense">−</span>
+            </div>
+            <h3 id="expenseStat">0₫</h3>
+          </article>
+
+          <article class="stat-card balance">
+            <div class="stat-header">
+              <span>Số dư</span>
+              <span class="badge badge-balance">=</span>
+            </div>
+            <h3 id="balanceStat">0₫</h3>
+          </article>
+
+          <article class="stat-card savings">
+            <div class="stat-header">
+              <span>Tiết kiệm</span>
+              <span class="badge badge-savings">★</span>
+            </div>
+            <h3 id="savingStat">0₫</h3>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h3 id="formTitle">Thêm giao dịch</h3>
+            </div>
+
+            <form id="transactionForm" class="transaction-form">
+              <input type="hidden" id="transactionId" />
+
+              <div class="field-group">
+                <label for="dateInput">Ngày</label>
+                <input id="dateInput" type="date" required />
+              </div>
+
+              <div class="field-group">
+                <label for="typeInput">Loại</label>
+                <select id="typeInput" required>
+                  <option value="income">Thu nhập</option>
+                  <option value="expense">Chi tiêu</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="categoryInput">Phân loại</label>
+                <select id="categoryInput" required></select>
+              </div>
+
+              <div class="field-group">
+                <label for="amountInput">Số tiền</label>
+                <input id="amountInput" type="number" min="0" step="1000" placeholder="0" required />
+              </div>
+
+              <div class="field-group">
+                <label for="noteInput">Ghi chú</label>
+                <input id="noteInput" type="text" placeholder="Ví dụ: Tiền lương, mua đồ ăn..." />
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-btn">Lưu giao dịch</button>
+                <button type="button" id="cancelEditBtn" class="secondary-btn hidden">Hủy</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Phân tích theo danh mục</h3>
+            </div>
+            <div id="categoryBreakdown" class="category-breakdown"></div>
+          </div>
+        </section>
+
+        <section class="panel full-width">
+          <div class="panel-header row-header">
+            <h3>Danh sách giao dịch</h3>
+            <div class="summary-pill" id="transactionCount">0 mục</div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ngày</th>
+                  <th>Loại</th>
+                  <th>Phân loại</th>
+                  <th>Ghi chú</th>
+                  <th>Số tiền</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="transactionTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
